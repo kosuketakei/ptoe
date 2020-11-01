@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views import generic  # FormViewを利用するため
+from django.views import generic  
 from django.contrib.auth.mixins import LoginRequiredMixin   # ログオンユーザのみアクセス可とするために利用する
 from django.conf import settings  # settings.pyの定義内容を利用するため
-from .forms import UploadForm   # forms.pyで定義したUploadFormをインポート
+from .forms import UploadForm   
 from django.core.files.storage import default_storage   # ファイルオブジェクト操作のためdefault_storageを利用する
 import shutil, os 
 from .utils import create_excel
@@ -42,7 +42,7 @@ class ListView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'pdfmr/list.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)  #承継元のメソッドを呼び出す
+        context = super().get_context_data(**kwargs)  
         #自分が作成したExcelファイルだけを一覧表示
         login_user_name = self.request.user.username
         if not default_storage.exists(os.path.join(settings.MEDIA_ROOT, "excel", login_user_name)):
@@ -60,19 +60,22 @@ class ListView(LoginRequiredMixin, generic.TemplateView):
 
 @login_required    
 def dell_file(request):
-    checks_value = request.POST.getlist('checks') #CheckBox＝Onのファイル名を取得
-    login_user_name = request.user.username   #ログオンユーザ名を取得
+    #CheckBoxがOnのファイル名を取得
+    checks_value = request.POST.getlist('checks')
+    #ログオンユーザ名を取得
+    login_user_name = request.user.username
     
     #Excelファイルの格納パスを取得
     if checks_value:
         for file in checks_value:
             path = os.path.join(settings.MEDIA_ROOT, "excel", login_user_name, file)
-            default_storage.delete(path)    #CheckBox=ONのファイルをサーバから削除
+            #CheckBox=ONのファイルを削除
+            default_storage.delete(path)
         return render(request, 'pdfmr/delete.html', {'checks_value': checks_value})
     else:
         login_user_name = request.user.username
         file_list = default_storage.listdir(os.path.join(settings.MEDIA_ROOT, "excel", login_user_name))[1]
-        warning_message = "削除対象ファイルが選択されていません。"
+        warning_message = "削除するファイルが選択してください。"
         
         context = { 
             'file_list': file_list,

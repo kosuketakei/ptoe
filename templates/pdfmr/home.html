@@ -2,18 +2,14 @@
   {% extends './base.html' %}
   {% block content %}
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <section class="content-header">
         <h1>ファイル形式変換器</h1>
         <p>~PDF形式のファイルをExcel形式に変換~</p>
     </section>
-    <!-- Main content -->
     <section class="content">
-        <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h4>PDF to Excel</h4>
@@ -25,9 +21,7 @@
                     <a href="{% url 'pdfmr:upload' %}" class="small-box-footer">管理画面へ移動 <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h4>Excel管理画面</h4>
@@ -40,18 +34,9 @@
                 </div>
             </div>
         </div>
-        <!-- /.row -->
-        <!-- Main row -->
         <div class="row">
-            <!-- Left col -->
             <section class="col-lg-7 connectedSortable"></section>
-            <!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <!-- right col -->
         </div>
-        <!-- /.row (main row) -->
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 {% endblock content %}
