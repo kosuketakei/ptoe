@@ -5,7 +5,7 @@ import openpyxl
 #第三引数は捜査対象のexcelファイルのパス
 def merge_excel(book,result_list,temp_file):
     try:
-        #書き込み対象シート選択
+        
         sheet = book['請求書一覧']
         index = 6
         for i in range(len(result_list)):
@@ -31,7 +31,6 @@ def merge_excel(book,result_list,temp_file):
             #保存
             book.save(temp_file)
     except Exception as e:
-        err_message ="Excelファイルへのデータ転記処理でエラーが発生しました。<br>\
-        アップロードしたPDFファイルが正しいフォーマットか確認してください。<br>\
+        err_message ="エラーが発生しました。アップロードしたPDFファイルが正しいフォーマットか確認してください。<br>\
         エラーメッセージ：" + str(e)
         return err_message

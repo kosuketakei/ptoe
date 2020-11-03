@@ -23,7 +23,7 @@ class UploadForm(forms.Form):
         return temp_dir
     
     def create_dir(self, n):
-        """一時フォルダ名生成関数"""
+        #一時フォルダ名生成するための関数
         return 'pdf\\' + ''.join(random.choices(string.ascii_letters + string.digits, k=n))
 
     
