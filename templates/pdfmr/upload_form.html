@@ -1,0 +1,36 @@
+{% extends './base.html' %}
+{% block content %}
+<div class="content-wrapper">
+<section class="content-header">
+  <h1 class="box-title"><b>　PDF->Excel変換</b></h1>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+     
+        </div>
+        <div class="box-body">
+          <hr>
+          <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label class="col-lg-5 col-form-label"><h4>{{form.document.label}}</h4></label><br>
+            <p>※PDFは複数ファイルを一括でアップロードできます。</p>
+            <div class="form-group col-sm-5">
+              {{form.document}}
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">アップロード</button>    
+          </form>
+          {% if form.errors %}<hr>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <p>PDF以外のファイルはアップロードできません。</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends './base.html' %}
+{% block content %}
+<div class="content-wrapper">
+<section class="content-header">
+  <h1>一覧画面</h1>
+</section>
+<section class="content">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title"> <b>PDF→Excel変換処理結果</b></h3>
+      </div>
+      <div class="box-body">
+        <div class="card-body">
+          {% if message  %}
+          <div class="callout callout-info">
+            {{message}}
+          </div>
+          {% endif %}
+          {% if err  %}
+        <div class="callout callout-danger">
+          {{err |safe}}
+        </div>
+    {% endif %}
+        </div>
+        <hr>
+        <div class="text-center">
+          <a href="{% url 'pdfmr:home' %}" class="btn btn-primary btn-sm" role="button">戻る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+{% endblock content %}

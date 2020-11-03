@@ -1,0 +1,47 @@
+{% extends './base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="content-wrapper">
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title"> <b>　生成したExcelファイル一覧</b></h3>
+            <p></p>
+          </div>
+          <div class="box-body">
+            <div class="card-body">
+              <hr>
+              <form action='{% url 'pdfmr:dell_file' %}' name="form" method="post"> 
+                {% csrf_token %}
+                <label>
+                  <input type="checkbox" name="all" onClick="AllChecked();" />  全て選択
+                </label><br>  
+              {% for file in file_list %}
+              <label>
+                <input type="checkbox" name="checks" value="{{file}}"/>
+                <a href="http://127.0.0.1:8000/media/excel/{{login_user_name}}/{{file}}">{{file}}</a>
+              </label>
+              <br> 
+              {% endfor %}
+              <input type="submit" id="button" name="button"  class="btn btn-sm btn-danger" value="削除">
+            </form>
+            {% if warning_message %}
+            <hr>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+              <p>{{warning_message}}</p>
+            </div>
+            {% endif %}
+            <hr>
+              <div class="text-center">
+                <a href="{% url 'pdfmr:home' %}" class="btn btn-primary btn-sm" role="button">戻る</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock content %}
